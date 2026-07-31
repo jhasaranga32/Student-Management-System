@@ -142,13 +142,13 @@ export default function StudentsPage() {
                   </td>
                   <td className="px-6 py-4 text-right space-x-2">
                     <Link
-                      href={`/students/${student.id}`}
+                      href={`/students/list?id=${student.id}`}
                       className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg transition-colors"
                     >
                       View
                     </Link>
                     <Link
-                      href={`/students/edit/${student.id}`}
+                      href={`/students/edit?id=${student.id}`}
                       className="px-3 py-1.5 bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-800/50 text-indigo-300 text-xs font-medium rounded-lg transition-colors"
                     >
                       Edit

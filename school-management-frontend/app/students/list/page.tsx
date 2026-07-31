@@ -1,17 +1,14 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getStudentById, deleteStudent } from "@/services/studentService";
 import { Student } from "@/types/student";
 
-export default function StudentDetailsPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(params);
+function StudentDetailsContent() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") ?? "";
   const router = useRouter();
 
   const [student, setStudent] = useState<Student | null>(null);
@@ -93,7 +90,7 @@ export default function StudentDetailsPage({
 
         <div className="flex items-center gap-3">
           <Link
-            href={`/students/edit/${id}`}
+            href={`/students/edit?id=${id}`}
             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm rounded-xl shadow-md transition-all"
           >
             Edit Profile
@@ -156,5 +153,13 @@ export default function StudentDetailsPage({
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function StudentDetailsPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center py-20 text-slate-400">Loading...</div>}>
+      <StudentDetailsContent />
+    </Suspense>
   );
 }

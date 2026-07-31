@@ -1,17 +1,14 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { getStudentById, updateStudent } from "@/services/studentService";
 import { Student } from "@/types/student";
 
-export default function EditStudentPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = use(params);
+function EditStudentContent() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id") ?? "";
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
@@ -242,5 +239,13 @@ export default function EditStudentPage({
         </div>
       </form>
     </div>
+  );
+}
+
+export default function EditStudentPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center py-20 text-slate-400">Loading...</div>}>
+      <EditStudentContent />
+    </Suspense>
   );
 }
