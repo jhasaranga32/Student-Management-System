@@ -33,18 +33,17 @@ export default function Navbar() {
             SMS
           </div>
           <span className="font-semibold text-lg tracking-tight text-gray-800">
-            School Manager
+            Dashboard
           </span>
         </Link>
 
         <nav className="flex items-center gap-4">
           <Link
             href="/students"
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-              pathname === "/students"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${pathname === "/students"
                 ? "bg-indigo-50 text-indigo-700 border border-indigo-200"
                 : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-50"
-            }`}
+              }`}
           >
             All Students
           </Link>
@@ -59,11 +58,10 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors border border-gray-200 ${
-                pathname === "/login"
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors border border-gray-200 ${pathname === "/login"
                   ? "bg-gray-100 text-gray-800"
                   : "text-gray-600 hover:text-gray-800 hover:bg-gray-50"
-              }`}
+                }`}
             >
               Login
             </Link>
